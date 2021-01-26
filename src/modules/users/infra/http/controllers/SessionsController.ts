@@ -14,6 +14,7 @@ export default class SessionsController {
       password,
     })
 
+    // @ts-expect-error Aqui irá ocorrer erro, porém esse dado não ira persistir, não afetando a app
     delete user.password;
 
     return response.json({ user, token })

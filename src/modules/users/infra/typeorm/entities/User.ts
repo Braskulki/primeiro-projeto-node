@@ -5,7 +5,7 @@ class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column() //por padrão o tipo é definido como String
+  @Column()
   name: string;
 
   @Column()
