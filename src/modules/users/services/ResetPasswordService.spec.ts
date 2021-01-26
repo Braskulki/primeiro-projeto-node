@@ -1,4 +1,4 @@
-import FakeUsersRepository from '../repositories/fakes/FakesUsersRepository';
+import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository';
 import FakeUserTokensRepository from '../repositories/fakes/FakeUserTokensRepository';
 import ResetPasswordService from './ResetPasswordService';
 import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashProvider';
