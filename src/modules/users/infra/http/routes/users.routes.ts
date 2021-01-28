@@ -7,13 +7,22 @@ import UsersController from '../controllers/UsersController';
 
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 import UserAvatarController from '../controllers/UserAvatarController';
+import { celebrate, Segments, Joi } from 'celebrate';
+
 
 const usersRouter = Router();
-const upload = multer(uploadConfig);
+const upload = multer(uploadConfig.multer);
 const usersController = new UsersController();
 const userAvatarController = new UserAvatarController();
 
-usersRouter.post('/', usersController.create);
+usersRouter.post('/', celebrate({
+  [Segments.BODY]: {
+    name: Joi.string().required(),
+    email: Joi.string().email().required(),
+    password: Joi.string(),
+    password_confirmation: Joi.string().valid(Joi.ref('password')),
+  }
+}), usersController.create);
 
 usersRouter.patch('/avatar', ensureAuthenticated, upload.single('avatar'), userAvatarController.update);
 
